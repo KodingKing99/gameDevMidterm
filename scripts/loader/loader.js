@@ -25,6 +25,16 @@ MyGame.loader = (function() {
             onComplete: null
         },
         {
+            scripts: ['GameModel/DirectionConstants'],
+            message: 'constants loaded',
+            onComplete: null
+        },
+        {
+            scripts: ['Systems/Input/keyboardInput'],
+            message: 'input system loaded',
+            onComplete: null
+        },
+        {
             scripts: ['screens/mainMenu', 'screens/credits',
                     'screens/customizeControls', 'screens/gamePlay'],
             message: 'Other screens loaded',
@@ -43,6 +53,7 @@ MyGame.loader = (function() {
             message: 'Components loaded',
             onComplete: null
         },
+        
         {
             scripts: ['Systems/Entity/entityFactory'],
             message: 'entity factory has loaded',
@@ -73,16 +84,8 @@ MyGame.loader = (function() {
             message: 'Particle system renderer loaded',
             onComplete: null
         },
-        {
-            scripts: ['Systems/Input/keyboardInput'],
-            message: 'input system loaded',
-            onComplete: null
-        },
-        {
-            scripts: ['GameModel/DirectionConstants'],
-            message: 'constants loaded',
-            onComplete: null
-        },
+
+
         {
             scripts: ['Systems/Movement/movement'],
             message: 'movement system loaded',

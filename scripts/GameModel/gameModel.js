@@ -14,13 +14,15 @@ MyGame.gameModel = function(){
     function initalizeSparkle(x, y){
         let mEntity = initalizeEntityAtXY(x, y);
         mEntity.addComponent(MyGame.components.StaticSprite({key: 'sparkle'}));
+        let controls = MyGame.systems.keyboardInput.controls;
+        // for()
+        let keys = {};
+        for(let dir in controls){
+            let control = controls[dir];
+            keys[control] = dir;
+        }
         mEntity.addComponent(MyGame.components.KeyboardControlled({
-            keys: {
-                'ArrowUp': MyGame.constants.direction.UP,
-                'ArrowDown': MyGame.constants.direction.DOWN,
-                'ArrowLeft': MyGame.constants.direction.LEFT,
-                'ArrowRight': MyGame.constants.direction.RIGHT,
-            },
+            keys: keys,
         }));
         mEntity.addComponent(MyGame.components.Movable({
             moveDirection: MyGame.constants.direction.STOPPED,
