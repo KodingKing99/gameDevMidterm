@@ -10,9 +10,9 @@ MyGame.screens['mainMenu'] = (function(game) {
         document.getElementById('customize-controls').addEventListener(
             'click', function(){game.showScreen('customizeControlsScreen')}
         )
-        // document.getElementById('high-scores').addEventListener(
-        //     'click', () => {game.showScreen('highScoresScreen')}
-        // )
+        document.getElementById('high-scores').addEventListener(
+            'click', () => {game.showScreen('highScoresScreen')}
+        )
         document.getElementById('credits').addEventListener(
             'click', () => {game.showScreen('creditsScreen')}
         )

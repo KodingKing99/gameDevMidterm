@@ -4,6 +4,7 @@ let MyGame = {
     assets: {},
     components: {},
     constants: {},
+    persistence: {},
 };
 requirejs.config({
     baseUrl: 'scripts',
@@ -30,13 +31,18 @@ MyGame.loader = (function() {
             onComplete: null
         },
         {
+            scripts: ['Persistence/highScores'],
+            message: 'high scores persistence loaded',
+            onComplete: null,
+        },
+        {
             scripts: ['Systems/Input/keyboardInput'],
             message: 'input system loaded',
             onComplete: null
         },
         {
             scripts: ['screens/mainMenu', 'screens/credits',
-                    'screens/customizeControls', 'screens/gamePlay'],
+                    'screens/customizeControls', 'screens/gamePlay', 'screens/highScoresScreen'],
             message: 'Other screens loaded',
             onComplete: null
         },

@@ -38,6 +38,7 @@ MyGame.gameModel = function(){
         addSparkle(GAME_WIDTH / 2, GAME_WIDTH / 2, entities);
         console.log(entities);
     }
+    // console.log(MyGame.persistence.highScores.highScores)
     function update(elapsedTime){
         MyGame.systems.keyboardInput.update(entities, elapsedTime);
         MyGame.systems.movement.update(entities, elapsedTime);
