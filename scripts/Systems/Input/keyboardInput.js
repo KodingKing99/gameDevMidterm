@@ -33,70 +33,54 @@ MyGame.systems.keyboardInput = (function () {
             }
         }
     }
+    function move(entity, key, input){
+        if(entity.components.movable){
+            entity.components.movable.facing = input.keys[key];
+            entity.components.movable.moveDirection = input.keys[key];
+        }
+        // console.log(entity)
+    }
+    function stop(entity){
+         if(entity.components.movable){
+            // entity.components.movable.facing = MyGame.constants.direction.STOPPED;
+            entity.components.movable.moveDirection = MyGame.constants.direction.STOPPED;
+        }       
+        // console.log(entity);
+    }
+    let moveCount = 0;
     function doMove(entities) {
+        // console.log("in keyboard");
         for (let id in entities) {
             let entity = entities[id];
             if (entity.components['keyboard-controlled']) {
                 let input = entity.components['keyboard-controlled'];
                 for (let key in input.keys) {
                     if (keysDown[key]) {
-                        moveAll(entities, key, input);
-                        keyRelease2(key);
+                        moveCount += 1;
+                        move(entity, key, input)
+                        // keyRelease2(key);
                     }
                 }
+                if(moveCount === 0){
+                    stop(entity);
+                }
+                moveCount = 0;
             }
         }
     }
-    // function checkIsYou(entities){
-    //     for (let id in entities) {
-    //         let entity = entities[id];
-    //         if (entity.components.properties) {
-    //             if (entity.components.properties.is('YOU')) {
-    //                 // console.log(`Entity is you: ${entity.components.noun.valueType}`)
-    //                 addInputComponent(entity);
-    //                 // console.log(entity);
-    //             }
-    //             else {
-    //                 // console.log("hello");
-    //                 // if (entity.components['keyboard-controlled']) {
-    //                 //     console.log(`Removing keyboard input from entity:`)
-    //                 //     entity.removeComponent(entity.components['keyboard-controlled']);
-    //                 //     console.log(entity);
-    //                 // }
-    //                 // console.log('hello')
-    //                 // console.log(entity.components.movable);
-    //             }
-    //         }
-    //         else{
-    //             if(entity.components.movable) {
-    //                 console.log("removing moving component")
-    //                 entity.removeComponent(entity.components.movable);
-    //             }
-    //         }
-    //     }   
-    // }
+
     // --------------------------------------------------------------
     //
     // Public interface used to update entities based on keyboard input.
     //
     // --------------------------------------------------------------
-    function update(elapsedTime, entities) {
-        // for (let id in entities) {
-        //     let entity = entities[id];
-        //     checkIsYou(entity);
-        // }
-        // checkIsYou(entities);
+    function update(entities, elapsedTime) {
         doMove(entities);
-        // for(let id in entities) {
-        //     let entity = entities[id];
-        //     doMove(entities, entity);
-        // }
-
         
     }
 
     window.addEventListener('keydown', keyPress);
-    // window.addEventListener('keyup', keyRelease);
+    window.addEventListener('keyup', keyRelease);
 
     let api = {
         update: update

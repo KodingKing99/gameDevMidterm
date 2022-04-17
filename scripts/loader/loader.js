@@ -1,7 +1,6 @@
 let MyGame = {
     screens: {},
     systems: {},
-    render: {},
     assets: {},
     components: {},
     constants: {},
@@ -24,21 +23,26 @@ MyGame.loader = (function() {
             scripts: ['screens/game'],
             message: 'game screen loaded',
             onComplete: null
-        }, 
+        },
         {
             scripts: ['screens/mainMenu', 'screens/credits',
                     'screens/customizeControls', 'screens/gamePlay'],
             message: 'Other screens loaded',
             onComplete: null
         },
-        // {
-        //     scripts: ['Components/KeyboardControlled', 'Components/Sprite',
-        //             'Components/Position','Components/Size', 'Components/Rotation', 
-        //             'Components/BoardPosition', 'Components/Movable', 'Components/Noun', 'Components/Properties',
-        //             'Components/Text', 'Components/ParticleEffect'],
-        //     message: 'Components loaded',
-        //     onComplete: null
-        // },
+         
+        {
+            // scripts: ['Components/KeyboardControlled', 'Components/Sprite',
+            //         'Components/Position','Components/Size', 'Components/Rotation', 
+            //         'Components/BoardPosition', 'Components/Movable', 'Components/Noun', 'Components/Properties',
+            //         'Components/Text', 'Components/ParticleEffect'],
+            scripts: [
+                'Components/Position','Components/Size', 'Components/Rotation', 'Components/StaticSprite',
+                'Components/KeyboardControlled','Components/Movable', 
+            ],
+            message: 'Components loaded',
+            onComplete: null
+        },
         {
             scripts: ['Systems/Entity/entityFactory'],
             message: 'entity factory has loaded',
@@ -55,6 +59,11 @@ MyGame.loader = (function() {
             onComplete: null
         },
         {
+            scripts: ['Systems/Render/static-renderer'],
+            message: 'static sprite renderer loaded',
+            onComplete: null
+        },  
+        {
             scripts: ['Systems/Random/random'],
             message: 'Random number generator loaded',
             onComplete: null
@@ -70,14 +79,27 @@ MyGame.loader = (function() {
             onComplete: null
         },
         {
-            scripts: ['Systems/Render/particle-system'],
-            message: 'Particle system renderer loaded',
+            scripts: ['GameModel/DirectionConstants'],
+            message: 'constants loaded',
             onComplete: null
-        }, 
+        },
+        {
+            scripts: ['Systems/Movement/movement'],
+            message: 'movement system loaded',
+            onComplete: null
+        },
+        {
+            scripts: ['GameModel/gameModel'],
+            message: 'game model loaded',
+            onComplete: null
+        },
     ];
 
     let assetOrder = [
-    
+        {
+            key: 'sparkle',
+            source: 'assets/sparkle.png',
+        },
     ];
 
     //------------------------------------------------------------------

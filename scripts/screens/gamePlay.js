@@ -8,7 +8,7 @@ MyGame.screens['gamePlayScreen'] = (function(game){
         lastTimeStamp = performance.now();
         cancelNextRequest = false;
         // parseLevelsFile();
-        // model = MyGame.gameModel();
+        model = MyGame.gameModel();
         gameLoop(lastTimeStamp);
     }
     function initialize(){
